@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:motion_hack/app/constant/constants.dart';
+import 'package:motion_hack/app/modules/history/bindings/history_binding.dart';
+import 'package:motion_hack/app/modules/history/views/history_view.dart';
+import 'package:motion_hack/app/modules/login/bindings/login_binding.dart';
+import 'package:motion_hack/app/modules/login/views/login_view.dart';
 
 class HomeProfileView extends GetView {
   const HomeProfileView({Key? key}) : super(key: key);
@@ -10,7 +14,9 @@ class HomeProfileView extends GetView {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(
           'Profil',
           style: GoogleFonts.poppins(
@@ -77,14 +83,14 @@ class _body extends StatelessWidget {
                 ),
               )),
           GestureDetector(
-              onTap: () => {},
+              onTap: () => Get.to(() => const HistoryView()),
               child: _feature(
                 screenSize: screenSize,
                 title: 'Riwayat',
                 image: 'ic_round-history.png',
               )),
           GestureDetector(
-              onTap: () => {},
+              onTap: () => Get.to(const LoginView(), binding: LoginBinding()),
               child: Container(
                 decoration: const BoxDecoration(
                     border: Border.symmetric(

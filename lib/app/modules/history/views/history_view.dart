@@ -17,7 +17,9 @@ class HistoryView extends GetView<HistoryController> {
           backgroundColor: Colors.white,
           leadingWidth: 22,
           leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: 30 * (screenSize.width / 390)),
@@ -51,7 +53,7 @@ class HistoryView extends GetView<HistoryController> {
                   style: GoogleFonts.poppins(
                       color: TColors.primary,
                       fontSize: 20,
-                      fontWeight: FontWeight.w600),
+                      fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
                   height: 25 * (screenSize.height / 729),
@@ -68,27 +70,6 @@ class HistoryView extends GetView<HistoryController> {
                 SizedBox(
                   height: 10 * (screenSize.height / 729),
                 ),
-                _card(screenSize: screenSize),
-                SizedBox(
-                  height: 10 * (screenSize.height / 729),
-                ),
-                _card(screenSize: screenSize),
-                SizedBox(
-                  height: 10 * (screenSize.height / 729),
-                ),
-                _card(screenSize: screenSize),
-                SizedBox(
-                  height: 10 * (screenSize.height / 729),
-                ),
-                _card(screenSize: screenSize),
-                SizedBox(
-                  height: 10 * (screenSize.height / 729),
-                ),
-                _card(screenSize: screenSize),
-                SizedBox(
-                  height: 10 * (screenSize.height / 729),
-                ),
-                _card(screenSize: screenSize)
               ],
             ),
           ),

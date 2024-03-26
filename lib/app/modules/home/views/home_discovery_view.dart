@@ -1,15 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:motion_hack/app/constant/constants.dart';
 import 'package:motion_hack/app/modules/home/controllers/home_controller.dart';
-import 'package:motion_hack/app/modules/payment/bindings/payment_binding.dart';
 import 'package:motion_hack/app/modules/payment/views/payment_view.dart';
 
-class HomeBerandaView extends GetView {
-  const HomeBerandaView({Key? key}) : super(key: key);
+class HomeDiscoveryView extends GetView {
+  const HomeDiscoveryView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
@@ -19,201 +17,92 @@ class HomeBerandaView extends GetView {
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Text(
-            'Beranda',
+            'Eksplorasi Proyek',
             style: GoogleFonts.poppins(
                 color: TColors.pressed,
-                fontSize: TSize.heading5,
+                fontSize: 20,
                 fontWeight: FontWeight.w600),
           ),
           centerTitle: true,
         ),
-        body: SafeArea(
-            child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: TSize.defaultHorizontalSpace),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: TSize.defaultHorizontalSpace),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 40 * (screenSize.height / TSize.defaultHeight),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Hallo, Laasyavi Madira!',
-                          style: GoogleFonts.poppins(
-                              color: TColors.pressed,
-                              fontSize: TSize.heading6,
-                              fontWeight: FontWeight.w400),
+              SizedBox(
+                height: 25 * (screenSize.height / TSize.defaultHeight),
+              ),
+              Text(
+                'Proyek Tersedia',
+                style: GoogleFonts.poppins(
+                    color: TColors.primary,
+                    fontSize: TSize.heading6,
+                    fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: 25 * (screenSize.height / TSize.defaultHeight),
+              ),
+              DefaultTabController(
+                  length: 3,
+                  child: TabBar(
+                      controller: controller.tabController,
+                      dividerColor: TColors.placeholder,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      splashFactory: NoSplash.splashFactory,
+                      labelStyle: GoogleFonts.poppins(
+                          color: TColors.pressed,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600),
+                      tabs: const [
+                        Tab(
+                          text: 'Pemula',
                         ),
-                        InkWell(
-                          onTap: () {},
-                          splashColor: TColors.pressed,
-                          borderRadius: BorderRadius.circular(7),
-                          child: Ink(
-                              width:
-                                  122 * (screenSize.width / TSize.defaultWidth),
-                              height: TSize.heading5,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(7),
-                                  gradient: const LinearGradient(
-                                      colors: [
-                                        TColors.main,
-                                        TColors.hover,
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter)),
-                              child: Center(
-                                child: Text(
-                                  "Project Manager, Pemula",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: TSize.textBodyS,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              )),
+                        Tab(
+                          text: 'Menengah',
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 40 * (screenSize.height / TSize.defaultHeight),
-                    ),
-                    CarouselSlider(
-                        items: [
-                          _bannerImage(screenSize: screenSize),
-                          _bannerImage(screenSize: screenSize),
-                          _bannerImage(screenSize: screenSize)
-                        ],
-                        options: CarouselOptions(
-                          viewportFraction: 1,
-                          autoPlay: true,
-                          autoPlayInterval: 5.seconds,
-                          aspectRatio: 21 / 9,
-                          onPageChanged: (index, _) =>
-                              controller.updateBannerIdx(index),
-                        )),
-                    const SizedBox(
-                      height: TSize.defaultVertical,
-                    ),
-                    Obx(() => Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            for (int i = 0; i < 3; i++)
-                              Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  height: TSize.defaultVertical / 2,
-                                  width: TSize.defaultVertical / 2,
-                                  color: controller.currentBannerIdx.value != i
-                                      ? TColors.placeholder
-                                      : TColors.hover)
-                          ],
-                        )),
-                    const SizedBox(
-                      height: TSize.defaultVertical,
-                    ),
-                    Text.rich(TextSpan(
-                        text: 'Anda ingin belajar apa\n',
-                        style: GoogleFonts.poppins(
-                            fontSize: TSize.heading5,
-                            fontWeight: FontWeight.w300),
-                        children: [
-                          TextSpan(
-                              text: 'hari ini ?',
-                              style: GoogleFonts.poppins(
-                                  color: TColors.pressed,
-                                  fontWeight: FontWeight.w500))
-                        ])),
-                    Container()
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: TSize.defaultHorizontalSpace / 2,
-              ),
-              _recomendationProject(screenSize: screenSize),
-              const SizedBox(
-                height: TSize.defaultHorizontalSpace,
-              ),
-              Text('Lanjutkan Proyek')
+                        Tab(
+                          text: 'Mahir',
+                        ),
+                      ])),
+              Expanded(
+                child:
+                    TabBarView(controller: controller.tabController, children: [
+                  _Content(title: controller.pemula),
+                  _Content(title: controller.menengah),
+                  _Content(title: controller.mahir),
+                ]),
+              )
             ],
           ),
-        )));
+        ));
   }
 }
 
-class _recomendationProject extends StatelessWidget {
-  const _recomendationProject({
+class _Content extends StatelessWidget {
+  const _Content({
     super.key,
-    required this.screenSize,
+    required this.title,
   });
 
-  final Size screenSize;
-
+  final List<String> title;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [TColors.main, TColors.hover],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight)),
-      width: double.infinity,
-      // height: 261 * (screenSize.height / TSize.defaultHeight),
-      child: Padding(
-        padding: const EdgeInsets.only(
-            left: TSize.defaultHorizontalSpace, top: 20, bottom: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Rekomendasi Proyek',
-                  style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: TSize.heading6,
-                      fontWeight: FontWeight.w600),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      right: TSize.defaultHorizontalSpace),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Text('Lihat Selengkapnya',
-                        style: GoogleFonts.poppins(
-                            fontSize: TSize.defaultTextBody,
-                            color: Colors.white,
-                            decoration: TextDecoration.underline,
-                            decorationColor: Colors.white)),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 13,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  _CardProject(screenSize: screenSize),
-                  _CardProject(screenSize: screenSize),
-                  _CardProject(screenSize: screenSize),
-                  _CardProject(screenSize: screenSize)
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+    final screenSize = MediaQuery.of(context).size;
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          mainAxisExtent: 175),
+      itemCount: title.length,
+      itemBuilder: (_, int index) {
+        return _CardProject(
+          screenSize: screenSize,
+          title: title[index],
+        );
+      },
     );
   }
 }
@@ -222,9 +111,11 @@ class _CardProject extends StatelessWidget {
   const _CardProject({
     super.key,
     required this.screenSize,
+    required this.title,
   });
 
   final Size screenSize;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -232,6 +123,18 @@ class _CardProject extends StatelessWidget {
       margin: const EdgeInsets.only(right: 5),
       width: 153 * (screenSize.width / TSize.defaultWidth),
       decoration: const BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromRGBO(0, 0, 0, 0.025),
+            offset: Offset(-7, 7),
+            blurRadius: 9,
+          ),
+          BoxShadow(
+            color: Color.fromRGBO(0, 0, 0, 0.025),
+            offset: Offset(7, -7),
+            blurRadius: 9,
+          )
+        ],
         borderRadius: BorderRadius.all(Radius.circular(8)),
         color: Colors.white,
       ),
@@ -239,7 +142,9 @@ class _CardProject extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const _imageCard(),
+          _imageCard(
+            title: title,
+          ),
           const SizedBox(
             height: 5,
           ),
@@ -352,8 +257,7 @@ class _CardProject extends StatelessWidget {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () => Get.to(() => const PaymentView(),
-                                    binding: PaymentBinding()),
+                                onTap: () => Get.to(() => const PaymentView()),
                                 child: Container(
                                   width: 150 *
                                       (screenSize.width / TSize.defaultWidth),
@@ -411,7 +315,9 @@ class _CardProject extends StatelessWidget {
 class _imageCard extends StatelessWidget {
   const _imageCard({
     super.key,
+    required this.title,
   });
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -427,7 +333,7 @@ class _imageCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(5.0),
             child: Text(
-              'Proyek Membaca',
+              title,
               style: GoogleFonts.poppins(
                   fontSize: TSize.defaultTextBody,
                   fontWeight: FontWeight.w600,
@@ -436,31 +342,6 @@ class _imageCard extends StatelessWidget {
           ),
         )
       ],
-    );
-  }
-}
-
-class _bannerImage extends StatelessWidget {
-  const _bannerImage({
-    super.key,
-    required this.screenSize,
-  });
-
-  final Size screenSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7)),
-        width: double.infinity,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(7),
-          child: const Image(
-              image: AssetImage('assets/images/banner.jpg'), fit: BoxFit.cover),
-        ),
-      ),
     );
   }
 }

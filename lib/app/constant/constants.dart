@@ -25,4 +25,6 @@ class TColors {
   static const Color iconPreset = Color(0xFFE3C7FA);
   static const Color placeholder = Color(0xFFB7B7B7);
   static const Color border = Color(0xFFDEDEDE);
+  static const Color error = Color(0xFFD21F1F);
+  static const Color success = Color(0xFF4CAF50);
 }
