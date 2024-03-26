@@ -8,6 +8,9 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.6
+  google_fonts: 6.1.0
+  mask_text_input_formatter: 2.9.0
+  carousel_slider: 4.2.1
   flutter: 
     sdk: flutter
 
@@ -17,5 +20,8 @@ dev_dependencies:
     sdk: flutter
 
 flutter: 
+  assets: 
+    - assets/icons/
+    - assets/images/
   uses-material-design: true
 

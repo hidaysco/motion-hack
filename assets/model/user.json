@@ -1,0 +1,10 @@
+{
+  "name": "Etthan Bayanaka",
+  "phone": "08123456789",
+  "password": "password",
+  "role": {
+    "status": "Mentor",
+    "interest":"Developer",
+    "tier": 1
+  }
+}

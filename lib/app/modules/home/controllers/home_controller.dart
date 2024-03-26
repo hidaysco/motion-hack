@@ -1,23 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:motion_hack/app/modules/home/views/home_beranda_view.dart';
+import 'package:motion_hack/app/modules/home/views/home_profile_view.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  final currentBannerIdx = 1.obs;
+  static const List<Widget> pages = <Widget>[
+    HomeBerandaView(),
+    HomeProfileView()
+  ];
+  void updateBannerIdx(int idx) {
+    currentBannerIdx.value = idx;
+    print(currentBannerIdx.value);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
