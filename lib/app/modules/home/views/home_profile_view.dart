@@ -12,241 +12,230 @@ class HomeProfileView extends GetView {
   const HomeProfileView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
-          'Profil',
-          style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w600,
-              fontSize: 20,
-              color: TColors.pressed),
-        ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: screenSize.height / 3.5,
-                child: _head(screenSize: screenSize),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: _body(screenSize: screenSize),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _body extends StatelessWidget {
-  const _body({
-    super.key,
-    required this.screenSize,
-  });
-
-  final Size screenSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: (screenSize.width / 7),
-          vertical: 48 * (screenSize.height / 899)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Pengaturan Akun',
-            style: GoogleFonts.poppins(color: TColors.primary),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text(
+            'Profil',
+            style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                fontSize: TSize.heading5,
+                color: TColors.pressed),
           ),
-          SizedBox(
-            height: 21 * (screenSize.height / 899),
-          ),
-          GestureDetector(
-              onTap: () {},
-              child: Container(
-                decoration: const BoxDecoration(
-                    border: Border.symmetric(
-                        horizontal:
-                            BorderSide(color: TColors.border, width: 1))),
-                child: _feature(
-                  screenSize: screenSize,
-                  title: 'Ubah Profil',
-                  image: 'iconamoon_profile-circle-fill.png',
-                ),
-              )),
-          GestureDetector(
-              onTap: () => Get.to(() => const HistoryView()),
-              child: _feature(
-                screenSize: screenSize,
-                title: 'Riwayat',
-                image: 'ic_round-history.png',
-              )),
-          GestureDetector(
-              onTap: () => Get.to(const LoginView(), binding: LoginBinding()),
-              child: Container(
-                decoration: const BoxDecoration(
-                    border: Border.symmetric(
-                        horizontal:
-                            BorderSide(color: TColors.border, width: 1))),
-                child: _feature(
-                  screenSize: screenSize,
-                  title: 'Keluar',
-                  image: 'majesticons_logout-line.png',
-                ),
-              )),
-        ],
-      ),
-    );
-  }
-}
-
-class _feature extends StatelessWidget {
-  const _feature({
-    super.key,
-    required this.screenSize,
-    required this.title,
-    required this.image,
-  });
-
-  final Size screenSize;
-  final String title, image;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20 * (screenSize.height / 899)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              ImageIcon(
-                AssetImage('assets/icons/$image'),
-                color: TColors.unselect,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Text(
-                  title,
-                ),
-              ),
-            ],
-          ),
-          const Icon(
-            Icons.chevron_right,
-            color: TColors.pressed,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _head extends StatelessWidget {
-  const _head({
-    super.key,
-    required this.screenSize,
-  });
-
-  final Size screenSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(40),
-                  bottomRight: Radius.circular(40)),
-              gradient: LinearGradient(
-                  colors: [TColors.hover, TColors.main],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter)),
-          height: 162 * (844 / screenSize.height),
+          centerTitle: true,
         ),
-        Positioned(
-          top: screenSize.height / 7,
-          left: screenSize.width / 7,
-          child: Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(6)),
-              color: Colors.white,
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.025),
-                  offset: Offset(0, -7),
-                  blurRadius: 9,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                      height: 212,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFA345F0),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(40),
+                          bottomRight: Radius.circular(40),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 10,
+                                  color: Colors.grey.withOpacity(0.5))
+                            ]),
+                        margin: EdgeInsets.only(top: 100),
+                        height: 172,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 30),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                              blurRadius: 10,
+                                              color:
+                                                  Colors.grey.withOpacity(0.5))
+                                        ]),
+                                    height: 87,
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 12),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                                'assets/images/profile-picture.jpg'),
+                                            radius: 30,
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Luffy Dono",
+                                                style: TextStyle(
+                                                    color: Color(0xFF652A95),
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14),
+                                              ),
+                                              Text(
+                                                "Product Manager",
+                                                style: TextStyle(fontSize: 14),
+                                              ),
+                                            ],
+                                          ),
+                                          CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                                'images/Ellipse 4.png'),
+                                            radius: 30,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.timer,
+                                        size: 15,
+                                      ),
+                                      Text(" Belajar 2 menit yang lalu"),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.025),
-                  offset: Offset(7, 0),
-                  blurRadius: 9,
+                const SizedBox(
+                  height: 30,
                 ),
-                BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.025),
-                  offset: Offset(-7, 0),
-                  blurRadius: 9,
-                ),
-                BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.025),
-                  offset: Offset(0, 7),
-                  blurRadius: 9,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Pengaturan Akun",
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Divider(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.person_pin_circle_outlined,
+                                  color: Color(0xFFE3C7FA)),
+                              Text(" Edit Profile")
+                            ],
+                          ),
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Color(0xFFE3C7FA),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Divider(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      GestureDetector(
+                        onTap: () => Get.to(() => const HistoryView(),
+                            binding: HistoryBinding()),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.person_pin_circle_outlined,
+                                    color: Color(0xFFE3C7FA)),
+                                Text(" Riwayat")
+                              ],
+                            ),
+                            Icon(
+                              Icons.arrow_forward,
+                              color: Color(0xFFE3C7FA),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Divider(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      GestureDetector(
+                        onTap: () => Get.to(() => const LoginView(),
+                            binding: LoginBinding()),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.person_pin_circle_outlined,
+                                    color: Color(0xFFE3C7FA)),
+                                Text(" Keluar")
+                              ],
+                            ),
+                            Icon(
+                              Icons.arrow_forward,
+                              color: Color(0xFFE3C7FA),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            width: 288 * (390 / screenSize.width),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: 20 * (screenSize.height / 899)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 170 * (844 / screenSize.height) / 2.5,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: const Image(
-                          fit: BoxFit.cover,
-                          image:
-                              AssetImage('assets/images/profile-picture.jpg')),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Laasyavi Madira',
-                        style: GoogleFonts.poppins(
-                            color: TColors.pressed,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        'Pelajar Pemula',
-                        style: GoogleFonts.poppins(
-                            color: TColors.primary, fontSize: 14),
-                      ),
-                    ],
-                  )
-                  // Image(image: AssetImage('assets/images/profile-picture.jpg'))
-                ],
-              ),
-            ),
           ),
-        )
-      ],
-    );
+        ));
   }
 }

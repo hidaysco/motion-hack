@@ -1,21 +1,26 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class MainProyek extends StatelessWidget {
-  const MainProyek({super.key});
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:motion_hack/app/constant/constants.dart';
+import 'package:motion_hack/app/modules/chat/bindings/chat_binding.dart';
+import 'package:motion_hack/app/modules/chat/views/chat_view.dart';
+import 'package:motion_hack/app/modules/detailProject/views/detail_user_view.dart';
 
+class ExistingProjectView extends GetView {
+  const ExistingProjectView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Center(
+        title: Center(
           child: Text(
             "Proyek",
-            style: TextStyle(color: Color(0xFF652A95)),
+            style: GoogleFonts.poppins(
+                color: TColors.pressed,
+                fontSize: TSize.heading5,
+                fontWeight: FontWeight.w600),
           ),
         ),
       ),
@@ -76,7 +81,10 @@ class MainProyek extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                         fontSize: 14),
                   ),
-                  Image.asset("images/Message 39.png")
+                  GestureDetector(
+                      onTap: () => Get.to(() => const ChatView(),
+                          binding: ChatBinding()),
+                      child: Image.asset("images/Message 39.png"))
                 ],
               ),
               const Row(
@@ -140,11 +148,14 @@ class MainProyek extends StatelessWidget {
                 height: 5,
               ),
               Row(
-                children: const [
-                  Text(
-                    "Richo Robin ",
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
+                children: [
+                  GestureDetector(
+                    onTap: () => Get.to(() => const DetailUserView()),
+                    child: Text(
+                      "Nico Robin ",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                   ),
                   Text("-"),

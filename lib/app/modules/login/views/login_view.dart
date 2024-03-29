@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:motion_hack/app/constant/constants.dart';
+import 'package:motion_hack/app/modules/home/bindings/home_binding.dart';
+import 'package:motion_hack/app/modules/home/views/home_view.dart';
 import 'package:motion_hack/app/modules/register/bindings/register_binding.dart';
 import 'package:motion_hack/app/modules/register/views/register_view.dart';
 
@@ -117,7 +119,10 @@ class LoginView extends GetView<LoginController> {
                   height: 20 * (844 / screenSize.height),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () => Get.offAll(
+                    () => const HomeView(),
+                    binding: HomeBinding(),
+                  ),
                   splashColor: TColors.pressed,
                   borderRadius: BorderRadius.circular(125),
                   child: Ink(

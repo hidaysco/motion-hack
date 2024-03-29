@@ -1,12 +1,12 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class MainProyek extends StatelessWidget {
-  const MainProyek({super.key});
+import 'package:get/get.dart';
+import 'package:motion_hack/app/modules/detailProject/views/detail_user_view.dart';
 
+import '../controllers/detail_project_controller.dart';
+
+class DetailProjectView extends GetView<DetailProjectController> {
+  const DetailProjectView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,11 +140,14 @@ class MainProyek extends StatelessWidget {
                 height: 5,
               ),
               Row(
-                children: const [
-                  Text(
-                    "Richo Robin ",
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
+                children: [
+                  GestureDetector(
+                    onTap: () => Get.to(() => const DetailUserView()),
+                    child: Text(
+                      "Nico Robin ",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                   ),
                   Text("-"),

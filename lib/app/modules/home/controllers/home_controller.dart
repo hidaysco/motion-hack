@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:motion_hack/app/modules/detailProject/views/detail_project_view.dart';
+import 'package:motion_hack/app/modules/home/views/existing_project_view.dart';
 import 'package:motion_hack/app/modules/home/views/home_beranda_view.dart';
 import 'package:motion_hack/app/modules/home/views/home_profile_view.dart';
 import 'package:motion_hack/app/modules/home/views/home_project_view.dart';
@@ -40,7 +42,8 @@ class HomeController extends GetxController
   static const List<Widget> pages = <Widget>[
     HomeBerandaView(),
     HomeDiscoveryView(),
-    HomeProjectView(),
+    // HomeProjectView(),
+    ExistingProjectView(),
     HomeProfileView()
   ];
   void updateBannerIdx(int idx) {

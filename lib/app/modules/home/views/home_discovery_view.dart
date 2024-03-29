@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:motion_hack/app/constant/constants.dart';
 import 'package:motion_hack/app/modules/home/controllers/home_controller.dart';
+import 'package:motion_hack/app/modules/payment/bindings/payment_binding.dart';
 import 'package:motion_hack/app/modules/payment/views/payment_view.dart';
 
 class HomeDiscoveryView extends GetView {
@@ -20,7 +21,7 @@ class HomeDiscoveryView extends GetView {
             'Eksplorasi Proyek',
             style: GoogleFonts.poppins(
                 color: TColors.pressed,
-                fontSize: 20,
+                fontSize: TSize.heading5,
                 fontWeight: FontWeight.w600),
           ),
           centerTitle: true,
@@ -257,7 +258,8 @@ class _CardProject extends StatelessWidget {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () => Get.to(() => const PaymentView()),
+                                onTap: () => Get.to(() => const PaymentView(),
+                                    binding: PaymentBinding()),
                                 child: Container(
                                   width: 150 *
                                       (screenSize.width / TSize.defaultWidth),

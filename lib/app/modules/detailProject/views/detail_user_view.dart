@@ -1,36 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class RiwayatPage extends StatelessWidget {
-  const RiwayatPage({super.key});
+import 'package:get/get.dart';
 
+class DetailUserView extends GetView {
+  const DetailUserView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-              child: Icon(
-                Icons.arrow_back,
-                color: Color(0xFFD9D9D9),
-                size: 35,
-              ),
-            ),
-            Center(
-              child: Text(
-                "Riwayat",
-                style: TextStyle(color: Color(0xFF652A95)),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Text("adawd")
-          ],
-        ),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -38,6 +14,61 @@ class RiwayatPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: Color(0xFFD9D9D9),
+                        size: 35,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Nico Robin",
+                              style: TextStyle(
+                                  color: Color(0xFF652A95),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "UI/UX Designer",
+                              style: TextStyle(
+                                  color: Color(0xFFE3C7FA),
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Pemula",
+                              style: TextStyle(
+                                  color: Color(0xFFE3C7FA),
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        CircleAvatar(
+                          backgroundImage: AssetImage('images/Message 39.png'),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Divider(
+                  color: Color(0xFFDEDEDE),
+                  thickness: 2,
+                ),
                 const SizedBox(
                   height: 25,
                 ),
@@ -157,8 +188,8 @@ class RiwayatPage extends StatelessWidget {
                                 const SizedBox(
                                   height: 15,
                                 ),
-                                Row(
-                                  children: const [
+                                const Row(
+                                  children: [
                                     Text(
                                       "Telah selesai pada tanggal ",
                                       style: TextStyle(

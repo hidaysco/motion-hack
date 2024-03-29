@@ -15,19 +15,6 @@ class HistoryView extends GetView<HistoryController> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          leadingWidth: 22,
-          leading: IconButton(
-              onPressed: () {
-                Get.back();
-              },
-              icon: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 30 * (screenSize.width / 390)),
-                child: const Icon(
-                  Icons.arrow_back_rounded,
-                  color: TColors.pressed,
-                ),
-              )),
           title: Text(
             'Riwayat',
             style: GoogleFonts.poppins(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -137,11 +139,14 @@ class HomeBerandaView extends GetView {
               const SizedBox(
                 height: TSize.defaultHorizontalSpace / 2,
               ),
-              _recomendationProject(screenSize: screenSize),
+              _recomendationProject(
+                screenSize: screenSize,
+                controller: controller,
+              ),
               const SizedBox(
                 height: TSize.defaultHorizontalSpace,
               ),
-              Text('Lanjutkan Proyek')
+              const Text('Lanjutkan Proyek')
             ],
           ),
         )));
@@ -152,10 +157,11 @@ class _recomendationProject extends StatelessWidget {
   const _recomendationProject({
     super.key,
     required this.screenSize,
+    required this.controller,
   });
 
   final Size screenSize;
-
+  final HomeController controller;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -186,7 +192,9 @@ class _recomendationProject extends StatelessWidget {
                   padding: const EdgeInsets.only(
                       right: TSize.defaultHorizontalSpace),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      controller.toggleNav(1);
+                    },
                     child: Text('Lihat Selengkapnya',
                         style: GoogleFonts.poppins(
                             fontSize: TSize.defaultTextBody,
